@@ -1,0 +1,5 @@
+{
+  "appService.zipIgnorePattern": ["node_modules{,/**}", ".vscode{,/**}"],
+  "appService.defaultWebAppToDeploy": "/subscriptions/a3d5d6d4-1a84-44b3-b7d7-6c5730ad9bfc/resourceGroups/TodoAppAngularV18_group/providers/Microsoft.Web/sites/TodoAppAngularV18",
+  "appService.deploySubpath": "dist\\todo-app"
+}

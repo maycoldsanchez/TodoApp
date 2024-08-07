@@ -1,0 +1,70 @@
+<section class="todoapp">
+  <header class="header bg-primary text-white p-3 mb-5">
+    <div class="container-sm todoapp-wrapper">
+      <h1>My Day</h1>
+      <p>All my tasks in one place</p>
+      <input class="new-todo form-control form-control" placeholder="Type new todo" autofocus type="text"
+        [formControl]="newTask" (keydown.enter)="addTaskHandler()" />
+    </div>
+  </header>
+  <div class="container-sm todoapp-wrapper">
+    <section class="main row mb-4">
+      <ul class="todo-list list-group">
+        @for (task of taskByFilter(); track task; let idx = $index) {
+        <li class="list-group-item view md3 d-flex" [class.completed]="task.completed" [class.editing]="task.editing">
+          <div class="form-check col">
+            <input class="form-check-input check-input" type="checkbox" value="" [checked]="task.completed"
+              (click)="completedTask(idx)" id="
+              flexCheckChecked{{ task.id }}" />
+            <label class="form-check-label" for="flexCheckChecked{{ task.id }}">
+              {{ task.title }}
+            </label>
+            <div class="d-flex">
+              <input class="edit-todo form-control form-control-sm" autofocus type="text" [value]="task.title"
+                (keydown.enter)="editTaskHandler($event, idx)" />
+              <button type="button" class="action-edit btn btn-sm btn-close ms-2 mt-1" aria-label="Close"
+                (click)="editingTask(idx)"></button>
+            </div>
+          </div>
+          @if (!task.completed) {
+          <button type="button" class="task-action btn btn-sm d-none" aria-label="" (click)="editingTask(idx)">
+            <i class="bi bi-pencil-fill"></i>
+          </button> }
+          <button type="button" class="task-action btn btn-sm btn-close mt-1 d-none" aria-label="Close"
+            (click)="deleteTask(idx)"></button>
+        </li>
+        }
+      </ul>
+    </section>
+
+    @if (tasks().length > 0) {
+    <footer class="footer">
+      <div class="row">
+        <div class="col text-start">
+          <span class="todo-count"><strong>{{ taskByFilter().length }}</strong> @if
+            (taskByFilter().length < 2) { <span> Item</span> } @else { Items }
+          </span>
+        </div>
+        <div class="col text-center">
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <input type="radio" class="btn-check" name="btnFilter" id="btnAll" autocomplete="off" checked
+              (click)="changeFilter('all')" />
+            <label class="btn btn-outline-primary" for="btnAll">All</label>
+            <input type="radio" class="btn-check" name="btnFilter" id="btnPending" autocomplete="off"
+              (click)="changeFilter('pending')" />
+            <label class="btn btn-outline-primary" for="btnPending">Pending</label>
+            <input type="radio" class="btn-check" name="btnFilter" id="btnCompleted" autocomplete="off"
+              (click)="changeFilter('completed')" />
+            <label class="btn btn-outline-primary" for="btnCompleted">Completed</label>
+          </div>
+        </div>
+        <div class="col text-end">
+          <button class="clear-completed btn btn-success mb-3">
+            Clear completed
+          </button>
+        </div>
+      </div>
+    </footer>
+    }
+  </div>
+</section>

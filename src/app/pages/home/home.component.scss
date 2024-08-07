@@ -1,0 +1,46 @@
+.todoapp {
+    .todoapp-wrapper {
+        max-width: 800px;
+        margin: 0 auto;
+        .list-group-item {
+            &:hover {
+                &:not(.editing) {
+                    button.task-action {
+                        display: block !important;
+                    }
+                }
+            }
+            .check-input {
+                border-radius: 50%;
+                margin-top: 0.1em;
+                width: 1.5rem;
+                height: 1.5rem;
+                margin-right: 1rem;
+            }
+            &.completed {
+                .form-check-label {
+                    text-decoration: line-through;
+                    color: #ccc;
+                }
+            }
+            &.editing {
+                .form-check-label,
+                .form-check-input {
+                    display: none;
+                }
+                .edit-todo,
+                .action-edit {
+                    display: block !important;
+                }
+            }
+            .edit-todo {
+                display: none;
+                width: calc(100% - 30px);
+                margin-left: -30px;
+            }
+            .action-edit {
+                display: none;
+            }
+        }
+    }
+}

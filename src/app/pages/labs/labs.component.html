@@ -1,0 +1,25 @@
+<h1>{{title}}</h1>
+<h2>{{welcome}}</h2>
+<ul class="list-group">
+  @for (task of tasks(); track task; let idx = $index) {
+    <li class="list-group-item">
+    Posicion {{idx}} {{task}}</li>
+  }
+</ul>
+<h1>Signal</h1>
+<input class="toggleform-control form-control-sm" type="text" (change)="changeEvent($event)" />
+<p>{{ name() }}</p>
+
+@if (name() === 'Maycol') {
+  <div>Soy maycol</div>
+} @else {
+  <div>No soy Maycol</div>
+}
+<ul>
+  @for (task of tasks(); track task; let i = $index) {
+
+    <li id="{{i}}">{{ task }}</li>
+    } @empty {
+    <li>No hay Item</li>
+  }
+</ul>
